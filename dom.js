@@ -121,4 +121,4 @@ function reset(){
 checkinBtn.addEventListener('click', checkin);
 checkoutBtn.addEventListener('click', checkout)
 infoBtn.addEventListener('click', info)
-resetBtn.addEventListener('click', reset)
+//resetBtn.addEventListener('click', reset)
