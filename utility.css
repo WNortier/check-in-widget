@@ -2,7 +2,7 @@
 
 @-webkit-keyframes travel {
     from { left: 0;     }
-    to   { left: 640px; }
+    to   { left: 97vw; }
   }
   
   @-webkit-keyframes bounce {
@@ -25,7 +25,7 @@
   
   @keyframes travel {
     from { left: 0;     }
-    to   { left: 640px; }
+    to   { left: 97vw; }
   }
   
   @keyframes bounce {
@@ -59,8 +59,8 @@
   #stage {
     position: relative;
     margin: 1em auto;
-    width:1000px;
-    height: 550px;
+    width: 97vw;
+    height: 240px;
     /* border: 2px solid #666; */
     background: darkolivegreen
   }
