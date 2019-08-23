@@ -6,7 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./simple-grid.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <title>Document</title>
+    <script type="text/x-template" class="employeeTemplate">
+        <tr>
+                <th>Item</th>
+                <th>Name</th>
+                <th>Day</th>
+                <th>Date</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Time-worked</th>
+                <th>Timer-value</th>
+            </tr>
+        {{#each this}}
+        <tr>
+            <td>{{incremented @index}}</td>
+            <td>{{name}}</td>
+            <td>{{day}}</td>
+            <td>{{date}}</td>
+            <td>{{check_in}}</td>
+            <td>{{check_out}}</td>
+            <td>{{time_worked}}</td>
+            <td>{{timer_value}}</td>
+        </tr>
+
+    {{/each}}
+    </script>
 </head>
 
 <body>
@@ -23,7 +49,7 @@
 
 
 
-            <div class="col-1"></div>
+
 
 
 
@@ -55,17 +81,13 @@
                                     <option class="inner" value="">Employee</option>
                                     <option class="inner" value="Warwick">Warwick</option>
                                     <option class="inner" value="Sino">Sino</option>
-                                    <option class="inner" value="Mark">Mark</option>
+                                    <option class="inner" value="Jason">Jason</option>
                                     <option class="inner" value="Victor">Victor</option>
                                     <option class="inner" value="Melissa">Melissa</option>
                                 </select>
                             </div>
-                            <div class="spacer"></div>
-                            <div class="spacer"></div>
-                            <div class="spacer"></div>
-                            <div class="spacer"></div>
-                            <div class="spacer"></div>
-                            <button class="info">Info</button>
+
+
                             <!-- <div class="spacer"></div>
                             <button class="set">Set Budget</button>
                             <div class="spacer"></div>
@@ -78,18 +100,18 @@
 
                         </div>
                         <div class="col-4">
-                            <input class="currentWeekday" type="text" placeholder="Weekday">
+                            <input class="arrivalWeekday" type="text" placeholder="Weekday">
                             <div class="spacer"></div>
-                            <input class="todaysDate" type="text" placeholder="DD Month YYY">
+                            <input class="arrivalDate" type="text" placeholder="DD Month YYY">
                             <div class="spacer"></div>
-                            <input class="todaysTime" type="text" placeholder="Current Time: 00:00">
+                            <input class="arrivalTime" type="text" placeholder="Arrival Time: 00:00">
                         </div>
                         <div class="col-4">
 
                             <button class="checkin">Check-in</button>
                             <h1 class="theTimer"
-                                style="color:green;font-size:24px;font-weight:lighter;background-color: lightgrey;border: 3px solid rgb(49, 135, 163);padding:0.2em;">
-                                <time >00:00:00</time></h1>
+                                style="color:red;font-size:24px;font-weight:lighter;background-color: lightgrey;border: 3px solid rgb(49, 135, 163);padding:0.2em;">
+                                <time>00:00:00</time></h1>
                             <div class="spacer"></div>
 
                         </div>
@@ -104,15 +126,11 @@
 
                     <div class="col-12">
 
-                        <div class="col-12 checkinContainer center green red">
+                        <div class="col-12 checkoutContainer center green red">
                             <h3>Check-Out Dashboard</h3>
                             <div class="col-4"></div>
                             <div class="col-4">
-                                <input class="currentWeekday" type="text" placeholder="Weekday">
-                                <div class="spacer"></div>
-                                <input class="todaysDate" type="text" placeholder="DD Month YYY">
-                                <div class="spacer"></div>
-                                <input class="todaysTime" type="text" placeholder="Current Time: 00:00">
+                                <input class="departTime" type="text" placeholder="Depart Time: 00:00">
                             </div>
                             <div class="col-4">
                                 <button class="checkout">Check-out</button>
@@ -131,15 +149,31 @@
 
             <div class="row">
 
-                <div class="col-4 center">
+                <div class="col-7 center">
 
 
                     <div class="col-12 center shoppingListContainer">
-                        <h3>Employee Information<br>
-                            <p style="color: white;">Topic ---- Description ---- Price</p>
-                        </h3>
+                        <div class="row">
+                            <div class="col-4">
+                                    <div class="spacer"></div>
+                                <select class="selectEmployeeInfo">
+                                    <option class="inner" value="">Employee</option>
+                                    <option class="inner" value="Warwick">Warwick</option>
+                                    <option class="inner" value="Sino">Sino</option>
+                                    <option class="inner" value="Jason">Jason</option>
+                                    <option class="inner" value="Victor">Victor</option>
+                                    <option class="inner" value="Melissa">Melissa</option>
+                                </select>
+                                <button class="info">Info</button></div>
+                            <div class="col-4">
+                                <h3>Employee Information</h3>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
                         <!-- <ul class="col-12 left"><li>topic____description____price</li></ul> -->
-                        <ol class="col-12 listHere left"></ol>
+                        <table class="col-12 employeeTemplateInsertPoint left">
+
+                        </table>
                     </div>
 
                     <!-- <div class="row center col-12 budgetContainer">
@@ -182,8 +216,11 @@
 
 
 </body>
+<script src="./employeeData.js" charset="utf-8"></script>
 <script src="./factory.js" charset="utf-8"></script>
+<script src="./script.js" charset="utf-8"></script>
 <script src="./dom.js" charset="utf-8"></script>
+
 
 
 </html>

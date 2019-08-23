@@ -1,12 +1,19 @@
 //FIELDS
 //var registrationField = document.querySelector("#registration_field");
 var selectEmployeeName = document.querySelector(".selectEmployeeName");
+var selectEmployeeInfo = document.querySelector(".selectEmployeeInfo");
 var checkinBtn = document.querySelector(".checkin");
 var checkoutBtn = document.querySelector(".checkout");
 var infoBtn = document.querySelector(".info")
-var currentWeekday = document.querySelector(".currentWeekday")
-var todaysDate = document.querySelector(".todaysDate")
-var todaysTime = document.querySelector(".todaysTime")
+
+var arrivalWeekday = document.querySelector(".arrivalWeekday")
+var arrivalDate = document.querySelector(".arrivalDate")
+var arrivalTime = document.querySelector(".arrivalTime")
+
+//var departWeekday = document.querySelector(".departWeekday")
+var departDate = document.querySelector(".departDate")
+var departTime = document.querySelector(".departTime")
+
 var resetBtn = document.querySelector(".reset")
 var h1 = document.getElementsByTagName('h1')[1]
 var seconds = 0
@@ -14,9 +21,7 @@ var minutes = 0
 var hours = 0
 var t;
 var theTimer = document.querySelector(".theTimer")
-
-
-todaysDate
+var deletePoint = document.querySelector(".employeeTemplateInsertPoint")
 //BUTTONS
 //var generateButton = document.querySelector("#generate_button");
 //INNERHTML
@@ -25,6 +30,7 @@ todaysDate
 //var localStorageExtraction = JSON.parse(localStorage.getItem("regsPassed"))
 //GLOBAL VARIABLES
 var factoryInstanceOne = checkinFactory()
+var templater = templateFactory()
 
 
 
@@ -50,29 +56,45 @@ function checkin(){
     }
     timer();
 }
-    factoryInstanceOne.timeConversion(todaysDate.value, todaysTime.value)
-    console.log(factoryInstanceOne.timeConversion(todaysDate.value, todaysTime.value))
-    console.log(document.querySelector(".theTimer").innerHTML)
-    // console.log(selectEmployeeName.value)
-    // console.log(startDate)
+
+console.log(selectEmployeeName.value)
+console.log(arrivalWeekday.value)
+console.log(arrivalDate.value)
+console.log(arrivalTime.value)
+
+
+templater.employeeTemplater(factoryInstanceOne.captureCheckin(selectEmployeeName.value, arrivalWeekday.value, arrivalDate.value, arrivalTime.value));
+//console.log(factoryInstanceOne.captureCheckin(selectEmployeeName.value, arrivalWeekday.value, arrivalDate.value, arrivalTime.value))
+//console.log(factoryInstanceOne.timeConversion(arrivalDate.value, arrivalTime.value))
+// console.log(selectEmployeeName.value)
+// console.log(startDate)
 }
-
-
 
 function checkout(){
+
+    var timerAmount = String(document.querySelector(".theTimer").innerHTML);
+    templater.employeeTemplater(factoryInstanceOne.captureCheckout(selectEmployeeName.value, arrivalWeekday.value, arrivalDate.value, arrivalTime.value, departTime.value, timerAmount))
     clearTimeout(t)
-    //alert("works")
-    return true
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+    return true;
 }
 
+
+
+
 function info(){
-    alert("works")
-    return true
+
+   return templater.employeeTemplater(factoryInstanceOne.info(selectEmployeeInfo.value))
 }
 
 function reset(){
-    h1.textContent = "00:00:00";
-    seconds = 0; minutes = 0; hours = 0;
+    // h1.textContent = "00:00:00";
+    // seconds = 0; minutes = 0; hours = 0;
+   
+    while (deletePoint.hasChildNodes()) {
+        deletePoint.removeChild(deletePoint.firstChild);
+      }
 }
 
 //UTILITY

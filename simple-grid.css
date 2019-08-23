@@ -266,7 +266,7 @@ p {
 }
 
 .checkoutContainer {
-  height: 20em;
+  height: 10em;
   background-color: rgb(49, 52, 54);
   border-radius: 30px;
   border: 3px solid rgb(49, 135, 163);
@@ -403,15 +403,17 @@ tr td th table {
 .red.show h3 {
   color: red;
 }
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
+table td {
+  color: white;
+  font-size: 17px;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+table th {
+  color: white;
+  border-collapse: collapse;
+  border: 1px solid black;
+  font-size: 17px;
+}
